@@ -18,6 +18,7 @@ const alertParagrafo = document.querySelector(".alert-p");
 const audioPlay = new Audio("./sounds/button-press.mp3");
 const alarm = new Audio("./sounds/clock-alarm.mp3");
 alarm.loop = true;
+alarm.volume = 0.7;
 
 let intervalo = null;
 let tempoEmSegundos = 5;
@@ -130,12 +131,10 @@ function iniciarOuPausarContagem() {
   if (tempoEmSegundos === 0 && modoBase === "foco") {
     alerta.classList.add("active");
     alertParagrafo.textContent = "Escolha uma pausa curta ou longa!";
-    mostrarNotificacao("Pomodoro finalizado 🍅", "Hora de fazer uma pausa!");
     return;
   } else if (tempoEmSegundos === 0) {
     alerta.classList.add("active");
     alertParagrafo.textContent = "Hora de voltar para o foco!";
-    mostrarNotificacao("A hora pausa acabou 🍅", "Hora de voltar para o foco!");
     return;
   }
 
@@ -173,8 +172,13 @@ function mostrarNaTela() {
     alerta.classList.add("active");
     if (modoBase === "foco") {
       alertParagrafo.textContent = "Escolha uma pausa curta ou longa!";
+      mostrarNotificacao("Pomodoro finalizado 🍅", "Hora de fazer uma pausa!");
     } else {
       alertParagrafo.textContent = "Hora de voltar para o foco!";
+      mostrarNotificacao(
+        "A hora pausa acabou 🍅",
+        "Hora de voltar para o foco!"
+      );
     }
     return;
   }
