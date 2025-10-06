@@ -21,7 +21,7 @@ alarm.loop = true;
 alarm.volume = 0.7;
 
 let intervalo = null;
-let tempoEmSegundos = 5;
+let tempoEmSegundos = 1500;
 
 // Primeiro, pede permissão ao usuário
 if (Notification.permission === "default") {
@@ -287,6 +287,5 @@ function trocarDeModo(novoModo, atualizarTempo = true) {
       btnLongo.style.display = "none";
       break;
   }
-
-  mostrarNaTela();
 }
+mostrarNaTela();
