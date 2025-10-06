@@ -159,26 +159,31 @@ function mostrarNaTela() {
   const segundos = tempoEmSegundos % 60;
 
   if (tempoEmSegundos <= 0) {
-    alarm.play();
-    clearInterval(intervalo);
-    intervalo = null;
-    pauseStart.innerHTML = playIcon;
-    minutosTela.classList.remove("ativo");
-    segundosTela.classList.remove("ativo");
-    minutosTela.textContent = "00";
-    segundosTela.textContent = "00";
+    if (intervalo !== null) {
+      alarm.play();
+      clearInterval(intervalo);
+      intervalo = null;
+      pauseStart.innerHTML = playIcon;
+      minutosTela.classList.remove("ativo");
+      segundosTela.classList.remove("ativo");
+      minutosTela.textContent = "00";
+      segundosTela.textContent = "00";
 
-    const modoBase = html.dataset.modo.replace("-dark", "");
-    alerta.classList.add("active");
-    if (modoBase === "foco") {
-      alertParagrafo.textContent = "Escolha uma pausa curta ou longa!";
-      mostrarNotificacao("Pomodoro finalizado 🍅", "Hora de fazer uma pausa!");
-    } else {
-      alertParagrafo.textContent = "Hora de voltar para o foco!";
-      mostrarNotificacao(
-        "A hora pausa acabou 🍅",
-        "Hora de voltar para o foco!"
-      );
+      const modoBase = html.dataset.modo.replace("-dark", "");
+      alerta.classList.add("active");
+      if (modoBase === "foco") {
+        alertParagrafo.textContent = "Escolha uma pausa curta ou longa!";
+        mostrarNotificacao(
+          "Pomodoro finalizado 🍅",
+          "Hora de fazer uma pausa!"
+        );
+      } else {
+        alertParagrafo.textContent = "Hora de voltar para o foco!";
+        mostrarNotificacao(
+          "A hora pausa acabou 🍅",
+          "Hora de voltar para o foco!"
+        );
+      }
     }
     return;
   }
@@ -229,8 +234,24 @@ function trocarDeModo(novoModo, atualizarTempo = true) {
         tempoEmSegundos = 900;
         break;
     }
+  } else {
+    // 🔹 Se o tempo atual estiver zerado, reseta automaticamente
+    if (tempoEmSegundos <= 0) {
+      switch (modoBase) {
+        case "foco":
+          tempoEmSegundos = 1500;
+          break;
+        case "curto":
+          tempoEmSegundos = 300;
+          break;
+        case "longo":
+          tempoEmSegundos = 900;
+          break;
+      }
+    }
   }
 
+  // 🔹 Atualiza a interface conforme o modo
   switch (novoModo) {
     case "foco":
       favicon.href = "img/logo_focus.svg";
@@ -287,5 +308,9 @@ function trocarDeModo(novoModo, atualizarTempo = true) {
       btnLongo.style.display = "none";
       break;
   }
+
+  // 🔹 Atualiza a contagem na tela após a troca
+  mostrarNaTela();
 }
+
 mostrarNaTela();
