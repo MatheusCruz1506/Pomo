@@ -7,6 +7,16 @@ e pausa, com interface limpa, tema escuro e música *lo-fi* opcional.
 
 ------------------------------------------------------------------------
 
+⏱️ O que é um cronômetro Pomodoro?
+
+O cronômetro Pomodoro é uma ferramenta baseada na Técnica Pomodoro, um método de gestão de tempo criado por Francesco Cirillo nos anos 1980.
+A ideia é simples: dividir o trabalho em blocos de tempo chamados “pomodoros”, geralmente de 25 minutos de foco intenso, seguidos por curtas pausas de 5 minutos.
+Após cerca de quatro ciclos, faz-se uma pausa mais longa, entre 15 e 30 minutos.
+
+Esse sistema ajuda a manter a concentração, reduzir a fadiga mental e aumentar a produtividade, pois alterna períodos de esforço e descanso de forma equilibrada.
+
+------------------------------------------------------------------------
+
 ## 📌 Funcionalidades principais
 
 -   Modo **Foco**, **Pausa curta** e **Pausa longa**
